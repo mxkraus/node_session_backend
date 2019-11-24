@@ -7,12 +7,12 @@ const MySQLStore = require('express-mysql-session')(session);
 
 const app = express();
 const sessionStore = new MySQLStore({
-    host: 'db26.variomedia.de',
-    user: 'u45659',
-    password: 'nasenbaer',
-    database: 'db45659',
+    host: '',
+    user: '',
+    password: '',
+    database: '',
     schema: {
-        tableName: 'no_sessions'
+        tableName: ''
     }
 });
 
