@@ -1,0 +1,71 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+
+<style>
+    table,
+    th,
+    td {
+        border-collapse: collapse;
+        border: 1px solid #b2b2b2;
+    }
+
+    th,
+    td {
+        padding: 3px;
+    }
+
+    tr:hover {
+        background-color: #b2b2b2;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+
+<body>
+
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="container">
+
+        <a id="syncBtn" class="btn btn-primary" href="/admin/sync-communities" class="btn">
+            <span style="display: none;" id="syncSpinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Mit Vereinskartell syncronisieren
+        </a>
+
+        <p>Diese Seite dient zur Benutzerverwaltung. Mit folgenden Accounts können sich die Vereine später unter /admin
+            anmelden.</p>
+
+        <% if (comms.length > 0) { %>
+
+        <table style="text-align: left;" border="collapse">
+            <tbody>
+                <tr>
+                    <th>Verein</th>
+                    <th colspan="2"></th>
+                </tr>
+                <% for (let cmy of comms) { %>
+                <tr>
+                    <td><%= cmy.name %></td>
+                    <td><a href="/admin/edit-community/<%= cmy.id %>?edit=true" class="btn">Bearbeiten</a></td>
+                    <td>
+                        <form action="/admin/delete-community" method="POST" style="display: inline;">
+                            <input type="hidden" name="comId" value="<%= cmy.id %>" />
+                            <button type="submit" alt="Löschen">X</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <% } else { %>
+        <h1>Keine Vereine vorhanden!</h1>
+        <% } %>
+        <p></p>
+        <p>
+            <a class="btn btn-primary" href="/admin/add-community/">Füge Verein hinzu</a>
+        </p>
+    </main>
+
+    <%- include('../includes/end.ejs') %>

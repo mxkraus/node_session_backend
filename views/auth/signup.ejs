@@ -1,0 +1,54 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body>
+
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="container">
+
+        <h3>Erstelle dein Konto.</h3>
+        <p>Ganz einfach die Inhalte dienes Vereins verwalten.</p>
+
+        <form action="/signup" method="POST">
+
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    <input type="text" name="firstName" class="form-control" placeholder="Vorname">
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="text" name="lastName" class="form-control" placeholder="Nachname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="signupEmail" placeholder="Ihre E-Mail Adresse" />
+            </div>
+
+            <label for="signupComm">Ich möchte die Webseite verwalten für:</label>
+            <select name="signupComm" id="signupComm" class="form-control form-group">
+                <% for( let com of comms ) { %>
+                <option value="<%= com.name %>"><%= com.name %></option>
+                <% } %>
+            </select>
+
+            <div class="form-group">
+                <input type="password" name="signupPass" class="form-control" placeholder="Dein Passwort">
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="signupPassConfirm" class="form-control" placeholder="Passwort wiederholen">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Registrieren</button>
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <%- include('../includes/end.ejs') %>

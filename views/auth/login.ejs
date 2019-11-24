@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body>
+
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="container">
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="inputEmail">Deine E-Mail Adresse:</label>
+                <input type="email" class="form-control" name="loginEmail" id="inputEmail" aria-describedby="emailHelp"
+                    placeholder="Ihre Mail-Adresse">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Dein Passwort:</label>
+                <input type="password" name="loginPassword" class="form-control" id="inputPassword"
+                    placeholder="Ihr Passwort">
+            </div>
+            <% if( role == 'admin' ) { %>
+            <input type="hidden" value="admin" name="adminRole" />
+            <% } %>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p></p>
+        <p>Noch keinen Account? Registriere dich hier:</p>
+        <p><a class="btn btn-secondary" href="/signup">Registrieren</a></p>
+
+    </main>
+
+
+    <%- include('../includes/end.ejs') %>
