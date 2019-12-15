@@ -17,7 +17,6 @@ exports.getLogin = (req, res, nest) => {
  * 
  */
 exports.getDashboard = (req, res, nest) => {
-    console.log(req.session.user);
     res.render('admin/dashboard', {
         pageTitle: 'Admin Dashboard',
         path: '/admin/dashboard',

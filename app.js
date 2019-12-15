@@ -1,24 +1,17 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 
+const options = require('./util/dbstore.js');
+var sessionStore = new MySQLStore(options);
 
 const app = express();
-const sessionStore = new MySQLStore({
-    host: '',
-    user: '',
-    password: '',
-    database: '',
-    schema: {
-        tableName: ''
-    }
-});
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
 
 const authRoutes = require('./routes/auth');
 
@@ -33,7 +26,7 @@ app.use(session({
     secret: 'my secret', // should be a long string value
     resave: false, // session is only saved when smt. changed
     saveUninitialized: false,
-    store: sessionStore, // Sessions in DB speichern    
+    store: sessionStore // Sessions in DB speichern    
 }));
 
 app.use(authRoutes);
